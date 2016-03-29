@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			  width: 40px;
+			  height: 40px;
+			 border: solid thin #888;
+			 display: inline-block;
+		}
+		.border {
+			border: solid thin red;
+		}
+		.hidden {
+			 display: none;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div id="template">
+		<div class="box hidden"></div>
+	</div>
+
+
+
+<script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script>
+var init = function() {
+//   var templateBox = $("#template .box");
+//   var body = $("body");
+//   var flickrPromise = $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?&format=json&tags=cats&jsoncallback=?"); 
+//   //it's calle a promise because you don't get the cats right away. Your code is non-blocking. It's not going to wait for flicker. Instead of wating, I'm going to give you a promise object. I promise you, this object will eventually be cat photos. Promises are very powerful recent feature. It's an advanced topic. The analogy is. An in-n-out receipt is a promise that you'll get a burger. 
+//   // success gives you access to the burger. 
+//   flickrPromise.success(function(data) {
+//   	 console.log(data); 
+//   	//debugger; 
+//   	// var imagesArry = data.items.map(function(o) { return o.media.m }); 
+//   	// var imagesArry = data.items.map(function(o) { 
+//   	// 	return $('o.media.m'); 
+//   	// }
+//   	var imagesSources = data.items.map(function(o) { return o.media.m });
+//   	console.log(imagesSources);
+//   	var imagesElements = imagesSources.map( function(imgSrc){ 
+// 		return $("<img/>", { src: o.media.m }); 
+//   	}); 
+//   	console.log(imagesElements);
+
+
+
+//   }); 
+//   // error handler gives you an error message. Reason that you can't fulfill promise. 
+//   // we got error because 
+//   flickrPromise.error(function(error) {
+//   	console.log(error); 
+//   });
+//   var boxes = []; 
+//   for (var i = 0; i <= 99; i++) {
+//     //body.append(templateBox.clone().removeClass("hidden"));
+//     boxes.push(templateBox.clone().removeClass("hidden")); 
+//     // This is a lot faster than the previous line. 
+//   }
+//   body.append(boxes); 
+//   console.timeEnd("run");
+// }
+// var init2 = function() {
+//   var templateBox = $("#template .box");
+//   var body = $("body");
+//   var boxes = []; 
+//   for (var i = 0; i <= 99; i++) {
+//     body.append(templateBox.clone().removeClass("hidden"));
+//     //boxes.push(templateBox.clone().removeClass("hidden")); 
+//   }
+//   console.timeEnd("run");
+// }
+
+
+// click button is easy. Enter is tricky. An easy way and a hard way. The hard way is to monitor enter. Enter is also part of the key press events. Everytime you hit a key, it's three events, down, press, and up. I could monitor one of them. If the key I just hit is enter, do something. That's the hard way. What's the easy way? Submit. 
+// Standard practice: put every input in a form. 
+var init = function(){
+	var body = $('body'); 
+	var form = $('<form>', {
+		html: $("<input>", { type: 'text', placeholder: 'What you wanna see?' })
+	}); 
+	form.on("submit", function(e){
+		e.preventDefault(); 
+		console.log($("input").val()); 
+		fetchFromFlickr($(input))
+	});
+	body.append(form); 
+}; 
+
+var fetchFromFlickr = function(term){
+	var flickrPromise = $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?&format=json&tags=" + term + "&jsoncallback=?");
+};
+
+
+//Global variables are bad. 
+$("document").ready(init);
+	</script>
+</body>
+</html>
+
+
+<!-- Use chrome dev tools > profile to check speed  
+or use console.timeEnd("run") 
+That DOM change is significant. 
+Bench marking is running something over a thousand. You have bench mark to see if this version is better than that version. 
+jquery will deal with JSonp for you. 
+use map to make array of images. Map is more declarative... functional programming. 
+We want to convert data objects to just images. 
+map 
+data.items.map( function(o){ return o.media.m }); 
+this returns an array of cat images. 
+$("<img/>", { src: link ..... })
+
+task: append input box that allows input. 
+
+
+
+
+
+-->
+
+

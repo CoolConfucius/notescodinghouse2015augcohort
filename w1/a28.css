@@ -1,0 +1,41 @@
+/* a28 css 
+		pos:r tab gives position: relative; 
+		bdc:t tab gives border-color: transparent; 
+		c in css is cascading. typically styles that are applied after overrides. 
+		*/
+/* Boot strap 
+btn btn-default are classes. Bootrap in a nutshell: you give elements certain classes, bootstrap styles them 
+use bower. It just runs in the browser. Now we get bower, we can use it to install bootstrap 
+bower init . hit enter 15 times or something. I'm fine with default. Bower makes a json. 
+bower i --save bootstrap jquery . we want to install but do something more. now we have more in our bower json. 
+minified code version of bootstrap is the same except it takes out comments, white spaces, and rename variable names shorter. min.js is the minified version of its js. You want to use that. min.map allows the effors to tell us something that's useful. We usually don't commit bower components because user can install bower dependencies. We can't use bower on git hub pages. If you're using git hub pages, don't use bower. I rather use a package manager than getting cdn from internet. 
+
+control r is to search commands we have entered. 
+
+We will talk about less. It lets you type your styles and translates it to css. 
+*/
+body {
+	/*background-color: black; */
+}
+.myContainer {
+	background-color: #aaaaaa;
+}
+.myOtherContainer {
+	background-color: orange;
+}
+.col{
+	/*border: 1px solid black;*/
+	height: 200px;
+	background-color: #dddddd;
+	
+}
+.inner {
+	border: 1px solid black;
+	margin: 5px;
+	height: 90%;
+}
+
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Aug 31</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		#rect {
+			width: 5px;
+			height: 2000px;
+			background-color: black;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="container">
+		<h1>jQuery Test</h1>
+		<label for="item">Item:</label>
+		<input type="text" id="item" value='initial'>
+		<button class="btn btn-success" id='enter'>Enter</button>
+		<!-- Cade: You don't to use a form tag. form submits.  Why have a form if I'm not submitting it? Perhaps Samer can clarify. But form is why you guys are having problems. -->
+		<!-- <form action="">
+			<label for="item">Item:</label>
+			<input type="text" id="item" value='initial'>
+			<button class="btn btn-success" type='button' id='enter'>Enter</button>
+		</form> -->
+	<!-- need type='button' to /prevent submit? -->
+	<!-- want to add things inside of my list -->
+		<div class="row">
+			<div class="col-xs-6" id='list' data-sort='ascending'>
+
+			</div>
+		</div>
+
+		<div id="rect">
+
+		</div>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="a31.js"></script>
+</body>
+</html>
+
+
+<!-- In html, we can preset data. We can sort-->

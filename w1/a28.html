@@ -1,0 +1,91 @@
+<!-- a28 after lunch 
+Emmet is a time saving utility.  -->
+<!-- Type div and hit tab -->
+<!-- type div*10 and hit tab to get ten divs  -->
+<!--  type ! and hit tab to get the standard html stuff -->
+<!-- The way emmet works, you give it some command and hit the tab key. 
+	Go to emmet documentation cheat sheet. Bookmark it. 
+	div is the default .thing*10 gives ten divs with class thing. 
+	.thing$*10 gives thing with number, super cool 
+	.thing#$*20 gives div with class thing and numbered ids. 
+	#$.thing*20 also works. 
+	To move to the next div: tab 
+	Shift tab to move back to previous. 
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- link tab -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="a28.css">
+	<!-- Your css should come after bootstrap! -->
+</head>
+<body>
+<!-- div.container tab to make div with container class  -->
+<!-- div.container>h1>ol>li*3 tab to make container with the childr en inside -->
+<!-- .container>h1.title{Some Title}+ol>li*3 tab to do something cool  -->
+<!-- .container>h1.title{Some Title}+ol>li#item$@*3 tab  -->
+<!-- .container>h1.title{Some Title}+ol>li#item$@15*3 to start at 15 
+	use a minus sign to go reverse? -->
+<!-- .container>h1.title{Some Title}+ol>li#item$@-13*3 
+use a ^ to go up. Don't feel like you have to always use emmet. It's there when it's helpful. -->
+
+<!-- class is an attribute just like id is an attribute -->
+<!-- .classA.classB tab gives div with two classes 
+	.classA.classB*5 tab to give 5 of them -->
+
+
+<!-- css should come before javascript. If you put your style at the bottom, there's gonna be a moment where we see your page without style. Don't want that. Wnat style first. We put script at bottom because that's the last thing. Script is the logic. We only do that when everything is ready to go. So link your styles in the head, source your script at the very bottom -->
+
+<!-- script tab gives empty script tag 
+script:src tab to give script with src -->
+<!-- source your scripts in this order. Order is important for html, css, and javascript -->
+<!-- python -m SimpleHTTPServer 8000 then type in localhost:8000 on web page  -->
+	<div class="container-fluid myContainer">
+	<!-- fluid makes the background color flex? 
+	Never nest containers! They can be siblings, though -->
+
+	<!-- if I want to center my title: -->
+	<div class="jumbotron">
+		<h1 class="text-center" id='title'>TITLE!</h1>	
+	</div>	
+
+	<div class="row">
+	<!-- .col.col-xs-12.col-sm-6.col-md-4.col-lg-3 
+	let's see how these elements behave on different sizes-->
+		<div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3">
+			<div class="inner">
+				<h3 class="text-center">Thing</h3>	
+				<div id="myButton">click me</div>
+				<input type="text" id='myInput'>
+			</div>			
+		</div>
+	</div>
+	</div>
+
+	<!-- columns always take up the full width of the container they're in -->
+	
+	<h1>TITLE!</h1>
+	<!-- see bootstrap grid system, media queries. We change our how our styles work based on the media we're in. Based on the width of the window. Media queries are more than just the width of the window. Maybe we want do something different mobile device vs on desktop. Maybe on portrait view or landscape view. In a nutshell, we use media queries that have styles that can change based on what the browser is doing. And you don't need bootstrap to do it. You can do this with vanilla css. Bootstrap just makes it easy. 
+	Grid. based on window, different things can happen. I'd like you guys to play with these things. You can add any number of these classes to the same element! 
+
+-->
+</div>
+<div class="container myOtherContainer">
+	<h1>OTHER TITLE!</h1>
+</div>
+<!-- see the difference between regular container and container-fluid -->
+
+
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="a28.js"></script>
+</body>
+</html>
+
+<!-- give up on note taking -->
+<!-- use  <input type="number"> -->
+
