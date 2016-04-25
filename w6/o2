@@ -1,0 +1,152 @@
+//2015 10 2 
+// A soda machine, a line of people lining up to get soda. the guy at the front gets the soda. he somehow doubles he gives birth two clones who go to the back of the line. challenge is to write a program that will determine who is the nth person to get a soda. 
+// A B C D E . we got five people in line. A is at the front. The first person to get a drink is A. A is shifted off and two more As appear at the end. BCDEAA And then B. So and then... BBCCDDEEAAAA
+// YOu want a program that will determine a an array in this way. 
+// function roundPush(element, array, times){
+//   var i = times; 
+//   while (i !== 0){
+//     array.push(element);
+//     --i; 
+//   }
+//   return array; 
+// };
+// function cloneSoda(startArray, index){
+//   var changeArr = []; 
+//   for (var i = 0; i < startArray.length; i++) {
+//     changeArr.push(startArray[i]);
+//   }
+//   if (startArray.length >= index) {
+//     return startArray[index - 1]
+//   } else {
+//     var round = 2; 
+//     while (changeArr.length <= index){
+//       for (var i = 0; i < startArray.length; i++) {
+//         // if (i === 0) { round++ };
+//         // console.log('round', round);
+//         // console.log('start', startArray);
+//         changeArr = roundPush(startArray[i], changeArr, round);         
+//         if (changeArr.length >= index) {
+//           // return changeArr[index-1];
+//           return changeArr;
+//         }
+//       }
+//       round = round + 1; 
+//       // console.log(round); 
+//     }
+//     return changeArr[index-1];
+//   }
+// };
+
+// console.log(cloneSoda(['A', 'B', 'C'], 6)); //this will give us B. 
+// for (var i = 1; i < 20; i++) {
+//   console.log(cloneSoda(['A', 'B', 'C'], i));   
+// }
+// console.log(roundPush('A', ['A', 'B', 'C'], 4));
+
+// console.log(cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 1));
+// console.log(cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 52));
+// console.log(cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 12));
+// console.log(cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 7230702951));
+
+
+// cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 1)=="Sheldon"
+// cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 52)=="Penny"
+// cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 7230702951)=="Leonard"
+
+// cade [9:35 AM] 
+// cloneSoda(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 12)==“Rajesh"
+// See screen shots to see Cade's solution. 
+
+
+//Cade: redditClone
+
+// Aldo Biano: Custom Directives with AngularJS. 
+/* Why are Directives so important? Angular is built completely on Directives. Angular team built it so it's easy to do two binding. 
+Types of Directives: 
+There's Attribute: something that's gonna be applied to the html element. ng-click is attribute. 
+Element directive. No one uses the css class and comment directive. 
+What we'll build is an element directive. 
+Angular Translate, an angular directive. 
+
+Element Directive. datepicker. 
+
+What are the key elements of a custom directive? Be able to be reuseable. If you can't reuse it, then don't do it. You want it to be generic. The directive shouldn't have to change. Plan what is the spec of the directive. it has to be flexible enough to not be dependent on specific set of parameters. 
+
+Directive Scope: Parent Scope, when you're not doing anything with variables? Child Scope is inherited from the parent scope. Isolated scope is unique. We're gonna use isolated scope. It's your own little app inside an app. 
+*/
+
+// app.directive('myDirective', function(theFactory){
+//   return {
+//     restrict: 'AE',
+//     scope: {},
+//     templateURL: 'templateURL.html'
+//   };
+// });
+
+// You don't need to do directives. You do directives when you see that you're starting to copy and paste code. It's refactoring. 
+/* we want to build a table widget. parameters are row, and title? 
+put in directive so we can call it without writing it. 
+does not need to know what's passed in. just know how it's displayed. 
+
+= means two way binding. 
+
+Have paging within your directive. 
+
+Two way data bind is expensive. Use it only when needed. Performance is the main issue. 
+
+Aldo: Go through bootstrap directives. THey're nice to use. 
+
+Cade: This is talking about reuseable code. The idea of having a module is really powerful. 
+Login and registration is something you'll need in everything. 
+
+Something... we can put it all in one module. make that an auth module. it can have services that can handle that. it can all be just packaged up in one little box. you can then just copy over to some other projects. I want to give this as some individual mini project. Make an Auth Module. Part of that would likely be firebase, probably the easiest way to go. Here's the idea. we can have some project in the future... whatever project, that'll have it's own module. but we'll have an auth module. it'll have firebase included in it, don't need a  separate module. it'll take care of it for you. that's the dream. that's what we want. 
+
+What's gonna be in this module? Probably your ref firebase, and something to manage it. a service to keep that ref. it's gonna be angular fire. probably have some constant for your firebase, plugin firebase url. 
+firebase 
+-> ref constant 
+
+nice to have some directives. The forms will be the most repeated boiler point section. Maybe: 
+form directive(s)
+The idea is all inclusive. 
+Cade: I feel controllers are much more bound to the thing... if we have some form, it's gonna have some controller, logic to handle the inputs. having a built in controller would make a lot of sense. 
+There will be: 
+views 
+controllers 
+
+Routing is a tricky one to think about. it's something that's gonna be specific to the app. It could be the point where we're considering this its own mini app and it can have it's own internal routing. 
+This is part of your model, factory, service: ... 
+
+Step 1. We're looking for some directives. Before you think about the whole module, think about login or register directive. Then you can drop that into your view, maybe a one liner. 
+
+
+
+
+
+Bartering app. 
+You can see items that other users have entered. You see the items available for trade. If you see something you like, you can offer a trade. They get some kind of notification that there's some kind of trade offer. If they decline, nothing happens. If they accept, the trade happens, the items swapped owners. Essentially. THat's the nutshell. 
+Angular Front end. Can do ionic if you like. Backend Express Mongo. 
+How do we get items that don't belong to me but are available for trade? I'm thinking about a specific Mongo query, Mongoose, find. The owner, and is available is true. And Mongoose will give you that list. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

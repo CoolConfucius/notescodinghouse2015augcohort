@@ -1,0 +1,131 @@
+// var o = { a: "$"}
+// Object.freeze(o)
+// has to be recursive. What we want is: 
+// Object.deepfreeze()
+//it will go through nested object. 
+// 'use strict'; 
+// var o = {a:{b:5},c:[{d:5}]}; 
+// Object.prototype.deepfreeze = function() {
+//   console.log("deepfreeze!");  
+//   console.log(this);
+//   var array = Object.keys(this); 
+//   console.log(array);
+//   for (var i = 0; i < array.length; i++) {
+//     console.log(array[i]);
+//     console.log("this", this);
+//     console.log("Object", Object);
+//     console.log("this.array[i]", this.array[i]);
+//     if(typeof array[i] === 'object'){
+//       console.log("in!", array[i]);
+//       console.log(this);
+//     }
+//   };
+//   // for (var prop in this){
+//   //   console.log("this nut", this);
+//   //   console.log("prop:", prop);
+//   //   var i = prop; 
+//   //   console.log("this.i:", this.i);
+//   //   console.log("this.prop:", this.prop);
+//   //   console.log("object? ", typeof this.prop);
+//   //   // if (typeof this.prop === 'object'){
+//   //   //   console.log(this.prop);
+//   //   //   console.log("True!");
+//   //   //   // prop.deepfreeze(); 
+//   //   //   for (nest in this){
+//   //   //     console.log(nest); 
+//   //   //   }
+//   //   } 
+//     // else {
+
+//     // }
+//   // }
+//   // Object.freeze(this);
+//   // console.log(Object.isFrozen(this));
+// };
+// o.deepfreeze();
+// console.log(o);
+// console.log(o.a);
+
+//Cade: just Object.deepfreeze, not Object.prototype.deepfreeze
+
+//Me: my stuff is not working. see screenshots for working examples. 
+
+//Cade: Custom Angular filters. 
+/* turn into currency filter. There's also a date filter. It's in unix time, the number of milliseconds since Jan 1st 1970. 
+Date filter https://docs.angularjs.org/api/ng/filter/date 
+longDate is kind of an argument. 
+what we're gonna do is make our down filter. 
+
+https://docs.angularjs.org/guide/filter
+
+versatile filter, has options. 
+
+
+The thing we're filtering is gonna be some string. we want to captilaize specific words. say it's gonna capitalize bacon and nothing else. 
+
+split on non-word chars. notice that I'm using a capture group. it does something. 
+
+here's the next challenge. we want to make a censor filter. 
+
+Cade: I reccommend using an index of. Every single time you change your
+Cade to me: with an indexOf, you won't need the inner loop. A map can replace your outer loop. 
+
+see screen shots 
+
+we want to have an input to add more curses. 
+changing the list is not gonna make the filter rerun. 
+
+constant. value. 
+
+Cade: value is way better than having a global variable. maybe better than serivce or factory? it's an improvement. 
+
+Mike Liang makes output the same as input. THe input has asterisks. 
+$filter is builtin dependency in Angular. 
+
+One more kind of filter: 
+We can put a filter in ng repeat! 
+<ul>
+    <li ng-repeat="name in names | filter : search">{{name}}</li>
+</ul>
+| filter is a built in angular thing. it's more like an array prototype filter. 
+Joe: array prototype filter, on array, you give a funciton that returns true or false... 
+Cade: truthy and falsey. if falsy, filtered out. 
+*/
+
+// $scope.names = $scope.names.filter(funciton(element){
+//   return element === 'cade';
+// })
+// this filters out everything that's not cade. 
+
+//angular filter is similar except it's dynamic. 
+/* Reddit. There are comments, and comments have comments. THere are votes. 
+Reddit is a classic CRUD app. 
+
+Firebase, all users looking at the same thing. Built in auth. We can have comments just be children of the post. 
+
+Moment is a time formatter. so it can say "6 months ago" or "few seconds ago"
+
+{{ createdAt | date }}
+it's built in angular
+
+encourage you to put a height and width on the image, so it's an icon size. 
+
+
+pteranodon
+lambeosaurus
+daspletosaurus
+
+
+Cade: 
+state, register or login. 
+see that ng-hide? 
+
+Sweet Alert
+http://t4t5.github.io/sweetalert/ 
+
+Angular Sweetalert
+https://github.com/oitozero/ngSweetAlert 
+
+Cade: gotta check everything for Angular, someone probably made a wrapper for it. 
+
+

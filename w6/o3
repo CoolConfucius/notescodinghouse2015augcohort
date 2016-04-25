@@ -1,0 +1,191 @@
+o3 /*
+2015 October 3 
+SQL
+original name: SEQUEL Structured English Query Langauge 
+
+CREATE    TABLE table   columns
+DROP      TABLE table   
+INSERT    INTO table
+SELECT *  FROM table 
+UPDATE 
+DELETE 
+
+
+...
+
+
+mysql > 
+create database bankonline 
+connect
+
+... 
+
+AlekseyMalyshev/usr/local/mysql > bin 
+AlekseyMalyshev/usr/local/mysql > sudo bin/mysql 
+
+mysql > 
+use bankonline
+create TABLE
+
+Alex: it's case insensitive so table and TABLE are the same. 
+
+mysql > 
+Create TABLE `customers` (
+`id` int unsigned not null auto_increment, 
+`name` varchar(65) not null, 
+`suffix` varchar(10), 
+`balance` int, 
+primary key (`id`)
+);
+
+Alex: highly recommended to have an id . and can type one line 
+
+Create TABLE `customers` (`id` int unsigned not null auto_increment, `name` varchar(65) not null, `suffix` varchar(10), `balance` int, primary key (`id`));
+
+Alex: remember, back ticks, not quotes. 
+
+Sheryl: 
+sudo /usr/local/mysql/support-files/mysql.server start
+
+
+Alex: 
+
+usr/local/mysql > ls support-files 
+
+Me: 
+My commands wasn't working because I didn't have semi colons. After semi colons, they work! 
+
+Alex: 
+If you don't use semi colon, it'll think you're continuing. Like json, they are separated by commas. 
+
+drop database bankonline; 
+
+use bankonline; 
+
+create table `customers` (
+`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+`name` varchar(65) NOT NULL,
+`suffix` varchar(10), 
+`balance` int, 
+primary key(`id`)
+): 
+
+Alex: I'll talk about primary key 
+
+
+create database bankonline; 
+
+use bankonline; 
+
+create table `customers` (
+`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+`name` varchar(65) NOT NULL,
+`suffix` varchar(10), 
+`balance` int, 
+`primary key(`id`)
+); 
+
+
+
+
+-- create database bankonline; 
+
+use bankonline; 
+
+create table `customers` (
+`id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+`name` varchar(65) NOT NULL,
+`suffix` varchar(10), 
+`balance` int, 
+primary key(`id`)
+); 
+
+create table `transactions` (
+`id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+`from` int unsigned, 
+`to` INT UNSIGNED,
+`amount` INT,
+primary key(`id`),
+index `idx_from_customer` (`from` ASC),
+constraint `idx_from_customer`
+  foreign key (`from`)
+  references `customers` (`id`),
+index `idx_to_customer` (`to` ASC),
+constraint `idx_to_customer`
+  foreign key (`to`)
+  references `customers` (`id`)
+);
+
+insert into `customers` (`name`, `balance`) values ('Charles', 100); 
+
+select * from `customers`; 
+
+insert into `customers` (`name`, `balance`) values ('Mike', 100); 
+
+update `customers` set `balance` = 90;
+
+SET @balance = (select balance from `customers` where name = 'Mike'); 
+SET @balance = @balance - 10; 
+
+update `customers` set `balance` = @balance where name = 'Mike';
+
+SET @balance = (select balance from `customers` where name = 'Charles'); 
+SET @balance = @balance - 10; 
+
+update `customers` set `balance` = @balance where name = 'Charles';
+
+insert into `transactions` (`from`, `to`, `amount`) values(1, 2, 10);
+
+select * from customers; 
+
+start transaction; 
+
+
+
+There's a package called mysql 
+npm install mysql 
+
+
+var express = require('express'); 
+var http = require('http');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+
+var app = express(); 
+var router = express.Router(); 
+
+var connection = mysql.createConnectoin({
+  host: 'localhost'.
+  user: 'root',
+  password: '',
+  database: 'bankonline'
+});
+
+connection.connect(); 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(morgan('dev'));
+app.use('/', router);
+app.use(express.static('./client'));
+
+router.post('/mysql', function(req, res) {
+  console.log(req.body.sql);
+  connection.query(req.body.sql, function(err, rows, fields){
+    if (err){
+      res.status(500).json({error: 'Internal server error'}); 
+    }
+    else {
+      console.log(fields);
+      res.send(rows); 
+    }
+  });
+  //res.json({ result: 'success!!'});
+});
+
+http.createServer(app).listen(8080);
+console.log('http server is running on port #8080');
+
+
+
+{{"sql": }}

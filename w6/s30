@@ -1,0 +1,177 @@
+/* 2015 9 30 */
+// is2 Thi1s T4est 3a
+// "Thi1s is2 3a T4est"
+// function sort(string){
+//   var array = string.split(' '); 
+//   var newArr = []; 
+//   var i = 0; 
+//   var index = 1; 
+//   while(newArr.length !== array.length){
+//     var subArr = array[i].split('')
+//     for (var j = 0; j < subArr.length; j++) {
+//       if(subArr[j] === index.toString()){
+//         newArr.push(array[i]); 
+//         index++; 
+//         i = -1; 
+//       }
+//     }
+//     i++; 
+//   }
+//   return newArr.join(' '); 
+// };
+
+// console.log(sort("is2 Thi1s T4est 3a")); 
+// console.log(sort("2Quarter with4 Dou1ble Che5ese Poun3der")); 
+
+
+function sort(string){
+  var array = string.match(/\d/g); 
+  array = array.sort(); 
+  var stringArr = string.split(' '); 
+  var newArr = [];
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; j < stringArr.length; j++) {
+      if(stringArr[j].match(array[i].toString())){
+        newArr.push(stringArr[j]);
+      }
+    }
+  }
+  return newArr.join(' '); 
+};
+
+console.log(sort("is2 Thi1s T4est 3a")); 
+console.log(sort("2Quarter with4 Dou1ble Che5ese Poun3der")); 
+
+// see screen shot for Cade's solution. I took a pill just in case that I didn't this morning. So it's eiter I've taken one or two. instead of one or none. 
+
+/* Apartment mangager app. These apartment properties, buildings, inside them are apartments. schemas. number of rooms. square footage. most importantly, a rent price. this is gonna be, an apartment manager. tentants. how much rent they're bringing in. 
+Properties -> Apartments 
+There are two categories of users. We got Tenants. But these users could also be Managers. 
+Properties -> Apartments -> Tentants. 
+Apartments can have several Tentants inside of them. 
+Schemas, dictate the rest of your app. 
+
+User schema. can either be tenants or manager of the property. 
+User
+name, 
+email, 
+isManager: Bool, 
+it's not gonna be super complicated. 
+
+Properties get a little more complicated. 
+Properties: 
+Manager, 
+Apts, 
+Address, 
+Name 
+
+Properties is one complex. 
+The Manager in properties is gonna be a user. 
+Properties: 
+Manager: user, 
+Apts: [{ rooms: }], 
+Address, 
+Name 
+
+Can have Apts be an array of objects, or... 
+Properties: 
+Manager: user; 
+Apts: [{ Object Apt }], 
+Address, 
+Name 
+that's gonna reference your aprtment else where in the system. 
+
+Apts: 
+bedrooms: 4, (our max tentant number)
+Aptnum: 
+Bathrooms,
+Tenants: [users],
+Rent, 
+sqrft
+isAvail:
+
+This is gonna be full stack. Mongo, Express backend, and I'd like you guys to have front end in Ionic. You could start with a simple front end and transition to a mobile front end. 
+
+How do we delegate? I recommend splitting in to subgroups of two. 
+
+
+// Team 
+One tab for users. 
+
+new user 
+
+
+
+
+Nick: 
+Linked In 
+On Jam's: 
+Have a more businessy photo 
+Contact Info 
+Stack overflow
+In contact info, you want more stuff. Maybe your phone number. But I don't recommend your real phone number. Google voice. Three digits depeneding on area. ex 650. Get one of the three for your google phone. 
+Something. If you don't have a personalized one, get one. 
+Under Experience. You can put Coding House here if you want. Or under schooling/ Education. 
+Are you front end or full stack? What are you going for? Put full stack here. 
+Say "Full Stack Javascript Developer" up there! 
+school, have logo is nice. 
+if 1 month, delete that. Not enough to say anything. 
+two years teaching stuff? have a couple bullet points on what you did. 
+Code School stuff? Delete delete delete. 
+Causes is fine. 
+Top Skills: 
+Do you want to get a job using microscope? laboratory? singing? I reccomend having 10 things. 
+On here, you should add stuff like Angular. 
+The same people are endorsing your stuff. I want you guys to endorse two or four skills? 
+Microsoft Office should go. 
+Recommendations. I want you to go back to those jobs and get recommendations. "Hey man, I'm looking to apply for this job on Monday. Can you write me a three four sentence on Linkedin?" If they don't write it, you write it and send it to them for them to approve. "You write it up, I'll click the button for you."
+
+I expect you to have more connections. You add people through groups, can't just add random. Join a group. Angular. Find cool people. You want to add the leaders. You want to add people high up in organization. When you apply job, they're gonna find you and you already know people in the company. To use Linkedin to spam... make it easy for recruiters. be friends with awesome people. Linkedin will flag you if you add people who don't know you. Make sure you add through a group. 
+If you're figuring out email address... how would you guess someone's email address? 
+lastname period first initial $ co.co
+plugin called reportive. type in someone's email address. if linkedin popup, you got someone's email. 
+
+something, keep shit short and simple. goal is not to get a job, but to get the next meeting. 
+
+Resume. have a word doc and a pdf. You'll have a resume for front end, back end, full stack and stuff. categories of what type of jobs. Word doc is for editing. other reason is to send it to recruiters for them to slice. make it easy for them. everything else, pdf. I send around ten seconds. see it in half. title job, title job, fuck everything else. Don't list every technology in the world. Want the bullet points. Five or ten seconds and move on to the next one. No one wants a two pager. I expect one page. No one gives a fuck about your cover letter. Some more bullet points of what you do. Have title of what you do. Address? It instills trust. If you're not gonna have the number, full address, then don't have it at all. it looks weird. 
+
+Let's open up your Github. Just your dash board. 
+In Contributions, everyday we want green if not dark green. Something readme files? 
+Let's look at your repos. 
+What's something that you built? The Senior dev will be looking at your stuff, but not reading through your code. Just a basic outline. "Hey, I did this all by myself. Hey, I did this with another guy. Here's what I did." Go star someone elses' repo. Describe repo. If you have time, find an open source project and contribute something. 
+
+Let's look at stackoverflow. Are you asking questions? I see people get jobs from answering questions. it works. 
+
+Next, let's go to AngelList. Who wants to work at a startup? If not, then fuck AngelList. 
+"Full Stack Web Developer San Francisco Bay Area"
+Projects: Where are those repos? 
+Experience: where's your resume? 
+Other thing to do is follow people. Just start following companies. Go to companies and email them. "Hey, I saw that position. I lvoe what you guys are doing. I love your mission" people love to hear about their project. "I love how you fill this gap. I love how you do this one thing well." This is a good way to get jobs. 
+
+Twitter: 
+Personally, I hate social media, but it aint going away. Either play the game or don't. Follwing 46 is not gonna work. How you get followers is to send out tweets that are relevent. Turn # to @ to notify. When you take pictures... soemthing. 
+This is techincal resources people are going to use. THey'll see that you're interested. 
+Peopela re bored in the evening. Evening is good time to tweet, at people. Companies at day. Find the right times that work for you and do it on a regular basis. Follow 50 in one sitting, then you're done for the day. Go hash tag. Then there's an app you can find to remove people who didn't follow you back. Run this app after a week. Put on auto follower. It's a polite thing to do. Wnat more followers. The goal of this is to make recruiters find you. So when people search on Twitter to find devs... guy finds job through Twitter. Hire that fucking kid. Expand your reach. 
+
+Let's go to Quora: 
+If you can't answer questions on stackoverflow cuz you don't know shit, then go here. If not here, then reddit. That's the lowest. Quora, try answering stuff on here. Make sure your profile is filled out. Your contact info. The whole point of all this shit is to make you avaialble. Recruiters are gonna start spamming you. If you go hard on what I said, you'll get a job. 
+
+For you guys in the 9 week... do stuff. after that, start spamming. you're gonna go to dice, craitlist, angellist, hack list. you're gonna start spamming for jobs. 
+
+Nick: How I met Sarah. 
+I use online dating. I week I meet lots of girls. Email conversations. I went out on a lot of coffee dates. It's easy to break off and cheap. I dated seven of them for longer than couple of weeks. THree of them were serious. I pick the best one. Similar to a lot of things I done in my life. I did the same shit in jobs. I talked to a lot of people, and had a lot of nos. It's a numbers game. 400, 500... you got to hit it hard. 30 or 40 a day. THat's a lot of work. Do the other shit. If you don't have cool shit on github... personal websites are cool and important, but they'll check out your github. if your github is stupid, you're fucked. don't be discouraged by the numbers game, that's how it works. sales, you're gonna sell yourself. 
+"you don't know shit. why should I hire you?" "First of all, I love your company. These are some of my projects. I picked up ionic in a day. I biult this stuff. it's pretty awesome. Give me a code challenge. I'll give it to you. YOu're right that I don't undersatnd, but I'm a fast learner. I can trouble shoot." Don't take no for an answer if you want the jobs. Go back there and tell them you'll work for free for a couple weeks. "I'd love to work for you for two weeks so you can try me and see how good I am." Offer to work for them for free to show you want it. They deal with a bunch of fucking losers on the phone. "I don't give a fuck. I want to work here." That's your communications, email. Code challenge, get that done fast. You need to show people that you're into them. Make them feel special. 
+
+We all know why we do this. But time. You guys have a limited amount of time. Nine week folks? Group projects and Epic. Next week, React. Might skip React? 
+
+If recruiters ask to meet in person, tell them to fuck off. Don't drive long way to talk to recruiter. Are you serious? Yeah I'm serious. I'm moving on to next recruiter. 
+
+
+No one wants to see links and features that don't work. 
+
+
+
+Me: when in doubt, mongod, nodemon, 
+
+
+MEAN generator 

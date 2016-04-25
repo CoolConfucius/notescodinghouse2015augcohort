@@ -1,0 +1,184 @@
+/* 2015 9 28 
+Github Pages
+Commit to special brach called gh pages. It's as if if you're running python server. 
+
+Cade: 
+I'd like you guys to build an inventory thing. Insurance. Making logs of things you down. 
+We want to be able to to keep track of items in separate rooms, be able to tell the total cost of items. 
+First, we want to be able to make rooms. 
+Bedroom. add Room. (this is an input box)
+Items: name, Qty. Cost/ea (each), Room. (for example, Bedroom v (Add) )
+Room is a drop down of the rooms we added. And we can add item. Each item is connected to the room. 
+You can select a room here and it's gonna populate a table. 
+Bedroom v 
+name, count, cost/ea total cost/item 
+
+So first, you add a room so you'll be able to keep track. btw, this is angular, no persisting data. you could do storage, but that's no mvp. we want to be able to add a room with input box. 
+chair, 2, 100, 200
+We want to have total cost of room displayed: 
+Total Cost (room) $200.00 
+
+a trash can delete button is also good. One table, but it's gonna be shifting. 
+By the way, you only need two files, an html and js. you cna use a cdn for angular. 
+
+use terminal command history! 
+git checkout -b gh-pages
+  530  git push origin gh-pages
+  531  git status
+  532  ls
+  533  git remote -v
+  534  git branch
+So to push to gh pages: 
+git checkout -b gh-pages
+git push origin gh-pages 
+
+-u means default something 
+
+
+Cade's insurance app: 
+*/
+// if(!$scope.rooms[newRoomName]){
+//   $scope.rooms[newRoomName]...
+// }
+// see first screenshot 
+
+// select rooms in room and push in the item. 
+// second screenshot 
+
+// the models are different. ss3. I got an ng show. ss4. named thing instead of item to avoid binding problems. 
+// {{thing.cost | currency}}
+// this is built in angular filter. By default, it's gonna be US dollars. 
+
+/*
+Cade: 
+Ionic lets you write javascipt and transport it to mobile: android ios. 
+together with ionic and cordova, we can make fully functional mobile app. 
+essentially, we're writing a web app, just putting a frame on it. able to see your app on a window on a phone. 
+
+  542  nvm install v0.12.7
+  543  nvm alias 12 v0.12.7
+
+Mac:code mac$ nvm alias default 12
+default -> 12 (-> v0.12.7)
+
+Mac:code mac$ node -v
+v0.12.7
+
+ionic projects have a lot of problems with 4. 
+
+version 12 doesn't have es. May need to babelfy. 
+
+npm i -g bower gulp nodemon babel sass
+
+npm i -g cordova ionic 
+
+when we have ionic installed, it gives us the ionic cammand and the generator. it's kind of like an express generator. it's a scaffold of the project. 
+
+cordova warn says it wants version 10, but it's okay. 
+
+http://ionicframework.com/getting-started/
+
+temp 
+ionic start ionicTest
+
+ionic account: 
+coolconfucius
+coolconfucius@yahoo.com
+standard 7 char 
+
+
+Cade: when you do an ionic start, it makes a new directory at your current directory, so cd into that. 
+
+.run runs when your thing is ready. 
+.config is about states. ui router. 
+
+so far, everything we did in angular is one modlue. stuff is connected to one module. but now we're dealing with multiple modules. 
+Look. we're loading in the other module as a dependency for this module. this allows us to have more separation of different parts of our app. keep all certain stuff in one module an bring other stuff. we have one module that's just services. just one factory in there. 
+
+ionic build ios
+ionic emulate ios
+npm install -g ios-sim
+ionic emulate ios
+
+ionic $ q 
+
+in same project same directory 
+ionic platform add android 
+
+that's one project that's gonna be for both android and ios. 
+you don't need to know objective c or java, just javascript 
+
+// ios
+ionic platform add ios
+ionic build ios
+ionic emulate ios
+
+// android
+ionic platform add android
+ionic build android
+ionic emulate android
+
+We'll need an android sdk 
+
+brew install android-sdk
+
+put this into bash
+echo 'export ANDROID_HOME=/usr/local/opt/android-sdk'
+source ~/.bash_profile
+
+ionic serve 
+
+chat in chats of tab-chats.html is defined in the ChatsCtrl of controllers.js or in the Chats factory of services.js 
+
+ ion item with ng repeats. 
+
+chats is defined in the controller. 
+$scope.chats in controllers.js is the chats in the tab-chats.html 
+what is populating the scope? the Chat factory! which is in services.js and the method called is all() and var Chats is an array of objects. 
+
+there's a lot of ionic specific things we need to know. 
+
+in the app.js, 
+the tab.dash is the state that manages the main dashboard page. this defines the view in the controller. DashCtrl. we want to add some girth to this dashcontroller. this is what we want. we want to turn the dash board. 
+make dash a weather page. 
+we want to make a new service or factory. 
+make new 'Weather' service/ factory 
+use it in the 'DashCtrl'
+
+Cade: 
+ionic serve. we're not even using an emulator. just a webview 
+
+ionic view. https://itunes.apple.com/us/app/ionic-view/id849930087?ls=1&mt=8
+
+
+ionic upload. 
+
+angular is built on ionic
+
+
+Cade: 
+cordova. 
+we'd likely get ng cordova. 
+
+Cade: 
+so, 
+ionic upload
+then sync on your ionic view. 
+
+I want to make a button and have it vibrate my phone. 
+
+
+Cade: cordova plugin geo location. 
+
+We can start making something. Maybe a full stack app. Maybe a simple Express Mongo backend, a simple crud with mobile. 
+Maybe a todo app. 
+
+local storage. phone file system to save things locally. 
+
+Firebase chat app? We haven't spend much time on Angular Fire. We're implementing a chatapp with ionic and Angular Fire. 
+
+ionic has good documentation. It's kind of like bootstrap, you put the proper classes on it, and it works. 
+
+The factory itself is our firebase array. we load it into our controller. then we just connect to the scope! 
+
+play with ionic. 
