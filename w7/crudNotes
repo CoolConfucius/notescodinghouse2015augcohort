@@ -1,0 +1,156 @@
+express appname --ejs
+npm install --save mongoose
+
+bin/www is where all the files connection port exist. where stuff's going, basic node stuff. 
+
+app.js, is where you have your general dependencies, information, where you tell your app to point. where am I gonna find my templates that I need to render. where am I gonna find my routes paths, how am I supposed to indicate them. other requirements for non specific node modules like passport. 
+
+routes. index.js is your basic website url. get, post... hitting databases, specific behaviors, behaviors. 
+'/' is the default. this is the general slash. But you also have the '/user/' routes. users.js. 
+
+http requests. get: i need to retrieve info. post, is writing info, put is update, delete is delete. 
+when you do a get, you give a set of function...
+
+sending to database, which is mongo. The idea is you set up your app so it connects to a database. 
+
+public: 
+this is stuff user interacts with. client side code. You might want to create a views folder in there. Not the same as the views folder created by express generator. 
+
+public/javascripts: 
+Controllers, Factories, Services, Configs. falls into client side. Your ruoutes are back end. Your front end are stuff that's making that requests. 
+
+Everything else goes outside your client code. 
+
+Schemas. Shouldn't be under public/javascripts. You can, but shouldn't. 
+
+Config is for other files, example: configuring passport. 
+
+basic idea of express is template where you can make calls between front end and backend. express is a nice way to lay it all out, tools to get the data, keep thigns organized. 
+
+
+Go to index.js
+First, on top under express... 
+var mongoose = require('mongoose'); 
+mongoose.connect('mongodb://localhost/crudapp');
+Connect to database. 
+
+Let's make first Schema. 
+
+in second terminal tab, do: 
+mongod 
+command t. third tab, command ~ . do: 
+mongo 
+
+open robomongo. it's basically your interface for dealing with database. 
+these are all your databases. 
+database has collections. collections is what holds information based on schemas. you have a schema called users, that creates a collection in the database. within these, there are objects. 
+
+in the tab with mongo, type: 
+use crudapp 
+this will show swtiched to db crudapp 
+
+basic idea. 
+http://docs.mongodb.org/manual/reference/method/db.createCollection/ 
+
+let's make schema then do mongo later. 
+schema is an object. what's gonna be in these objects? every test, user you create will follow these patterns. 
+
+make models folder in crudapp 
+
+
+in mongo: 
+you're in the database. to create a collection: 
+db.createCollection('crud')
+to insert into the collection: 
+db.crud.insert( { author: "author", price: 0 })
+you're directly interacting with the database. 
+
+db.crud.find()
+this retrusn everything in the collection 
+
+db.crud.find({ author: "author"})
+this will just terutn you that. 
+
+db.crud.insert( {author: "Ben", price: 1})
+
+db.crud.find().pretty()
+this makes it like json. 
+
+db.crud.find({ author: "Ben"}).pretty()
+
+db.crud.findOne()
+returns first thing that matches the given parameters. idea is, there may be a bunch of unique things, but you just want the first one. 
+if you know there's one person, do a findOne is a faster cuz it stops once it finds the person. in just find, it continues searching after the person is found. 
+
+the reason you do find by id is there's id in req. 
+
+req.user is the current user. 
+
+to insert multiple: 
+
+db.crud.insert([{ author: "king", message: "goodbye", price: 10}, { author: "jill", message: "goodbye and formal", price: 15}, { author: "jack", message: "goodbye", price: 20}])
+
+check out your robo mongo
+
+
+http://docs.mongodb.org/manual/reference/method/db.collection.remove/
+
+to remove: 
+db.crud.remove({ "_id" : ObjectId("5617290d746d79d1c89e2668")})
+
+now king is gone. 
+
+doesn't hae to be by id. 
+db.crud.remove({ "author": "jill" })
+now jill is gone. 
+
+
+say we want to update the price of jack's book. 
+first, you need to find what you need to update. then, what are your updates. 
+db.crud.update({ author: "jack"}, { price: 100 }, {upsert: true})
+The price is now 100, but the author is gone! 
+
+db.crud.update({price: 100}, {author: "jill"}, {upsert: false})
+
+The important thing you want to do with update is, make sure parameters is there. 
+
+if you update just price, it may make it so that price is the only key of the object. so be careful. 
+
+upsert true means, only do this if you find the document that matches the parameters. 
+upsert false means, if you don't find it, create it. 
+
+set is just updating a key of an object. 
+
+db.crud.update({author: "jack"}, {$set: {price: 250, author: "Halloween Jack"}})
+
+update is recreate the whole object. set is just recreating the key I specified. 
+
+added the /big router in index.js.
+collection names are either Titlecase or plurals
+
+lets go to postman. 
+http://localhost:3000/big
+
+there was a problem. Fixed it by renaming the database crud into cruds. 
+
+GET, http://localhost:3000/big
+POST, http://localhost:3000/big
+
+the post added Benji. 
+
+now let's do it with a body instead of hard coded in. 
+form data or x form. 
+
+request, req is from the front end. 
+can think of response, res as something that goes to the database. 
+req in, res out. 
+
+Me: where does Angular front end fit into this? ui router changes the url and makes action. back end requests from the ng models. 
+
+
+Cade: 
+Instead of having: var mongoose = require('mongoose'); 
+mongoose.connect('mongodb://localhost/crudapp'); 
+in routes/index.js 
+have it in app.js 
+

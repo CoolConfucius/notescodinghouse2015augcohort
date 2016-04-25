@@ -1,0 +1,17 @@
+2015 10 7 Wednesday 
+Samer Flux on board: 
+Models point arrows at views, but views don't point arrows at models at first. This is a contraint. 
+Later, if view needs to instruct model with something, then loop. Their arrows go through a dispatch before pointing to the back of the models. Thus, this is all one direction. 
+Samer: Model is read from the view. View is read from models and sent to dispatcher. every component has job to do.
+Between views and dispatcher is Action. Something needs to happen.  
+The arrows from models to views are labled with "read/ listen". It reads and listens to the models. It broadcasts that I changed. 
+This is a lot different than MVC. Contraint is can only go in that one direction. You dont' have to code in this direction but the flow is always this way. 
+
+https://github.com/facebook/flux
+
+......
+
+The view needs the data, but we can't send it to the view. We can only have the dispatcher tell data? 
+
+... 
+Flux is really just a dispatcher. 

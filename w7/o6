@@ -1,0 +1,33 @@
+o6
+2015 10 6
+Samer: 
+You want your component to just render simple. Small, maintainable, desn't need to be complex logic. Make your component as small and simple as possible. Question. what goes in what components. 
+
+Samer on board: 
+Have a App component. in the app component is a post component. In the post component, there's components such as comments, footer, and date. 
+Where should the data go? 
+
+The App component would have an array of posts. [p1, p2, p3]. Every post has comments. 
+Fetching data is tricky cuz server needs to give me back stuff. 
+
+Let the client ask the server the count of posts. But that's another thing. 
+
+So decide component structure, think about where the data should go, and markups. Make html markup works with fake data. You can do this whole story with fake data. 
+
+http://jspm.io/
+This takes your stuff into the client and make it work. a lot better workflow. when you debug, you're actually debugging yoru code. 
+
+http2, keep sources one file at time. load sources when you need it. we load it for you when you start using it, so on load, the user doesn't have to wait for all the javascript to finish loading. 
+
+https://github.com/jspm/jspm-cli/blob/master/docs/getting-started.md
+
+... lost! something about parse and a React tool 
+
+Samer: Google brought Firebase because Facebook uses Parse. 
+
+
+
+
+
+
+

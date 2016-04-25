@@ -1,0 +1,15 @@
+o8
+2015 10 8
+Aleksey 
+mkdir bankonline
+cd bankonline 
+npm init
+npm install --save express http mysql body-parser
+
+
+Lee: Check out Angular Seed and Mean JS
+
+
+'mongodb://localhost/data'
+'mysql://localhost:3306/bankonline'
+

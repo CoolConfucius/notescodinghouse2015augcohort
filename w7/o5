@@ -1,0 +1,1541 @@
+2015 10 5 
+Nick: 
+Apply for mock job. Don't take no for an answer. 
+Three couple of ideas. Make sure it's CRUD based. Three sentences on what it is. It'd be cool if it's something new, but doesn't have to be. It should be something your passionate about. Think about soemthing you're excited about, find that passion. 
+
+Hack.edu. If you're staying around, you should go. You'll be presenting your app at a meetup. Almost every cohort got a job out of it. 
+
+Everything you did on the internet lives forever. Make sure from this day out, what you put on your phone, internet, make sure it's something you're comfortable sharing in a big group. 
+
+Alice: Remember vocab words. What is closrue, what's hoisting? 
+Cade: Closure and hoisting are buzzwords. 
+
+Cade: Don't assume their questions are perfect. It's fair to answer a question with another question. 
+
+Samer: React JS. 
+Flux is all about one way data flow. 
+Importance of diffing in virtual DOM. View rendering to diff based rendering. 
+People see React as just for the V in MVC. There's no M or C in it, although that's not accurate. Very light weight. Thinking in React. V in MVC, diff in render... virtual DOM. What is a virtual DOM? 
+
+Browser DOM is expensive because it's a tree. Traveral. What is a fast virtual DOM. Virtual DOM is faster than the browser DOM. Virtual DOM is not in the server, it's in the client. You're not rendering the virtual DOM. But what enables the virtual DOM to be fast other than not rendering? Virtual DOM is 100% javascript. 
+
+Understand that the virtual DOM is really fast. 
+
+
+to write in virtual dom means you write javascript and nothing else. 
+
+that was html, this is javascript. 
+
+Takes your whole tree. create in js. 
+
+Angular is, putting javascript inside html. React is putting html inside javascript. Opposites. 
+
+Angular is conditionals, logic inside your template. 
+
+React: We have the power of javascript, lets decribe the DOM in javascript. This is non designer friendly. 
+
+null means no attribute. 
+
+// // var H1 = React.createElement("h1", null, "Hello Plunker");
+// var H1 = React.createElement("h1", null, "Hello ", "Plunker");
+// // I can take multiple elements. 
+// React.render(H1, document.body)
+
+react is completely flexible. 
+
+other than the flexibility, what else do we get from this? What other benefits? what huge benefit? 
+
+change is easier to maintain, but we're not there yet. 
+var H1 = React.createElement("h1", null, "Hello ", 
+  React.createElement("a", {href: 'http://plnker.co'}, "Plunker")
+  );
+
+React.render(H1, document.body)
+
+
+reusability is key in react! 
+
+var H1 = React.createElement("h1", null, "Hello ", 
+  React.createElement("a", {href: 'http://plnker.co'}, "Plunker")
+  );
+
+var Hs = React.createElement("div", null, H1, H1);
+
+React.render(Hs, document.body); 
+
+
+more typing, potentially harder to understand. 
+
+Interview question. What is JSX? JSX has nothing to do with React. It's not part of React. It's actually outgrowing React as a language. It's a good idea, where you take html and transfer to function calls. In this case... translate. 
+
+For you, We're gonna write html in js. You write html, React sees, and creates element tree. 
+
+we need a transformer to take html syntax... that's jsx. 
+
+
+I created a special React class that's a render function. 
+
+var H1 = React.createClass({
+  render: function(){
+    return React.createElement("h1", null, "Hello ", 
+      React.createElement("a", {href: 'http://plnker.co'}, "Plunker")
+    );    
+  }
+});
+
+// <h1>
+//   Hello <a href="http://plnker.co">Plunker</a>
+// </h1>
+
+React.render(React.createElement(H1), document.body); 
+
+Samer: 
+Plunker lets you use jsx even though you have script.js in your html. If not using Plunker, we'll have to do things manually. 
+
+
+var H1 = React.createClass({
+  render: function(){
+    return ( 
+    <h1>
+      Hello <a href="http://plnker.co">Plunker</a>
+    </h1>
+    );    
+  }
+});
+
+// React.render(React.createElement(H1), document.body); 
+// or
+React.render(<H1 />, document.body); 
+// this is a self closing tag. it means you don't have to do br /br...
+
+Don't omit that slash, you need it. 
+
+var H1 = React.createClass({
+  render: function(){
+    return ( 
+    <h1>
+      Hello <a href="http://plnker.co">Plunker</a>
+    </h1>
+    );    
+  }
+});
+
+var H2 = React.createClass({
+  render: function(){
+    return (
+      <h2>
+        Finally!
+      </h2>
+    );
+  }
+});
+
+React.render(<H2 />, document.body); 
+// what if I want to render both? 
+
+You always render one component. 
+
+They say that it's just the V in MVC, but I say that V is it's own MVC. We're gonna write some model stuff in components. 
+
+When you reuse, it needs to be dynamic. Anything dynamic is some output that's different based on the input. 
+
+Pure function. Not all functions are pure. Pure function is, same input, same output. It's dynamic based on input. 
+
+Component is a funciton of its properties, and they give you back virtual DOM. 
+
+var H1 = React.createClass({
+  render: function(){
+    return ( 
+    <h1>
+      Hello <a href="http://plnker.co">Plunker</a>
+    </h1>
+    );    
+  }
+});
+
+var H2 = React.createClass({
+  render: function(){
+    return (
+      <div>
+      <h2>
+        Finally!
+      </h2>
+      </div>
+    );
+  }
+});
+
+var Header = React.createClass({
+  render: function(){
+    return (
+      <div>
+        <H1 />
+        <H2 />
+      </div>
+    );
+  }
+});
+
+React.render(<Header />, document.body); 
+
+
+Since we have properties, the component will be dynamic. 
+
+console.log(this.props);
+    // this returns the object of the property.
+
+var H2 = React.createClass({
+  render: function(){
+    return (
+      <div>
+      <h2>
+        Finally!
+        {1+2}
+      </h2>
+      </div>
+    );
+  }
+});
+
+This gives you Finally!3 
+
+var H1 doesn't execute the component. It only defines. 
+React.render is what executes. 
+
+the properties are the input and the output is my virtual DOM. This important. Understand input output relation. Now we can reuse this... 
+
+var H1 = React.createClass({
+  render: function(){
+    console.log(this.props);
+    return ( 
+    <h1>
+      Hello <a href={this.props.url}>{this.props.title}</a>
+    </h1>
+    );    
+  }
+});
+
+var H2 = React.createClass({
+  render: function(){
+    return (
+      <div>
+      <h2>
+        Finally!
+        {1+2}
+      </h2>
+      </div>
+    );
+  }
+});
+
+var Header = React.createClass({
+  render: function(){
+    return (
+      <div>
+        <H1 title="Plunker" url="http://plnkr.co"/>
+        <H1 title="Google" url="http://google.com"/>
+        <H2 />
+      </div>
+    );
+  }
+});
+
+React.render(<Header />, document.body); 
+
+
+
+Things, frameworks are shifting towards components. 
+
+Web components. 
+
+Be descriptive in your component names. BulkSubscriptionButton. 
+
+
+var BigHeader = React.createClass({
+  render: function(){
+    return ( 
+    <h1>
+      Hello <a href={this.props.url}>{this.props.title}</a>
+    </h1>
+    );    
+  }
+});
+
+var SmallHeader = React.createClass({
+  render: function(){
+    return (
+      <div>
+      <h2>
+        Finally!
+        {1+2}
+      </h2>
+      </div>
+    );
+  }
+});
+
+var Header = React.createClass({
+  render: function(){
+    return (
+      <div>
+        <BigHeader title="Plunker" url="http://plnkr.co"/>
+        <BigHeader title="Google" url="http://google.com"/>
+        <SmallHeader />
+      </div>
+    );
+  }
+});
+
+React.render(<Header />, document.body); 
+
+
+
+Make more components? Start big and static. Make more detail as you need more. 
+
+var BigHeader = React.createClass({
+  greeting: 'Hi', 
+  render: function(){
+    return ( 
+    <h1>
+      {this.greeting} <a href={this.props.url}>{this.props.title}</a>
+    </h1>
+    );    
+  }
+});
+
+To get really good in React, you get good in javascript. Not Angular Syntax. Just Javascript. 
+
+can use function. Just invoke it: 
+
+var BigHeader = React.createClass({
+  greeting: function() { return 'Hi'; }, 
+  render: function(){
+    return ( 
+    <h1>
+      {this.greeting()} <a href={this.props.url}>{this.props.title}</a>
+    </h1>
+    );    
+  }
+});
+
+can define variable. it's preferred for readability. I don't like using this.props all the way. 
+
+var BigHeader = React.createClass({
+  greeting: function() { return 'Hi'; }, 
+  render: function(){
+    var data = this.props; 
+    return ( 
+    <h1>
+      {this.greeting()} <a href={data.url}>{data.title}</a>
+    </h1>
+    );    
+  }
+});
+
+variables inside the render are special. 
+
+var BigHeader = React.createClass({
+  greeting: function() { return 'Hi'; }, 
+  render: function() {
+    var data = this.props;
+    var link =  <a href={data.url}>{data.title}</a>
+    return ( 
+      <h1>
+        {this.greeting()} {link}
+      </h1>
+    );    
+  }
+});
+
+this works!
+What you see here is jsx get tranformed into React element. 
+
+var link =  <a href={data.url}>{data.title}</a>
+^this line is translated into 
+var link = React.createElement("a", ... )
+
+What you see here is not actually what is happening. JSX is just looking for the >, < signs and transforming them into React.createElements. 
+If the attribute name is small, it's recognized as... 
+So in React, we capitizize? So knows not an html element but React? 
+
+index.html: 
+<body>
+  <div>This part is not REACT</div>
+  <div id='react-node'></div>
+  <script src="script.js"></script>
+</body>
+
+script.jsx: 
+React.render(<Header />, document.getElementById("react-node")); 
+
+React can just take one section of your html, doesn't have to be the whole thing. So your other parts can be in Angular. 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://fb.me/react-0.14.0-rc1.js"></script>
+  <style>
+    h1 { color: red };
+  </style>
+</head>
+
+<body>
+  <div>This part is not REACT</div>
+  <div id='react-node'></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+var BigHeader = React.createClass({
+  greeting: function() { return 'Hi'; }, 
+  render: function() {
+    var data = this.props;
+    var link =  <a href={data.url}>{data.title}</a>
+    return ( 
+      <h1>
+        {this.greeting()} {link}
+      </h1>
+    );    
+  }
+});
+
+var SmallHeader = React.createClass({
+  render: function(){
+    return (
+      <div>
+      <h2>
+        Finally!
+        {1+2}
+      </h2>
+      </div>
+    );
+  }
+});
+
+var Header = React.createClass({
+  render: function(){
+    return (
+      <div>
+        <BigHeader title="Plunker" url="http://plnkr.co"/>
+        <BigHeader title="Google" url="http://google.com"/>
+        <SmallHeader />
+      </div>
+    );
+  }
+});
+
+React.render(<Header />, document.getElementById("react-node")); 
+
+
+becareful. Use className instead of class, because class is a js thing, too. 
+Warning will tell you, Did you mean className? 
+
+When you want to pass in a number as property, put it in curly brackets. 
+
+Order might not matter, but I like to define by dependencies. 
+
+var Timer = React.createClass({
+  render: function() {
+    return(
+      <div className = "timer">
+        Timer: {this.props.seconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer seconds={17} />
+        <Timer seconds={30} />
+        <Timer seconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+component. Properties and state. Like we have this.props, we also have this.state. They both construct the component. It's another object where we can controll data. 
+
+state, not something you pass in? You can initialize it in component. 
+
+props are read only. You can't change. State on the other hand is changable. ??
+
+var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: 99 };
+  }, 
+  render: function() {
+    return(
+      <div className = "timer">
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+
+Again, readablility is important. 
+
+var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  render: function() {
+    return(
+      <div className = "timer">
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer startingSeconds={17} />
+        <Timer startingSeconds={30} />
+        <Timer startingSeconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+after one second of Mounted, I want to decrement the timer. 
+
+if state changes inside component... React will automatically rerender the component for you. Don't have to do a something. You just change the state of the component. 
+
+
+var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentDidMount: function() {
+    this.setState({ remainingSeconds: this.state.remainingSeconds - 1 }); 
+    setTimeout(function(){
+
+    }, 1000);
+  },
+  render: function() {
+    return(
+      <div className = "timer">
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+
+
+componentDidMount: function() {
+    this.setState({ remainingSeconds: this.state.remainingSeconds - 1 }); 
+  },
+
+
+  componentDidMount: function() {
+    setTimeout(function(){
+      console.log(this);
+      this.setState({ remainingSeconds: this.state.remainingSeconds - 1 }); 
+    }, 1000);
+  },
+
+
+  componentDidMount: function() {
+    var self = this; 
+    setTimeout(function(){    
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }); 
+    }, 1000);
+  },
+
+  this is called closure. 
+
+
+  Instead of using setTimeOut, use setInterval. 
+
+  Interview. Use clear interval! To stop interval, clear interval at the last tic. 
+
+  var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 1){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  render: function() {
+    return(
+      <div className = "timer">
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer startingSeconds={17} />
+        <Timer startingSeconds={30} />
+        <Timer startingSeconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+Make it red: 
+
+var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 0){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  render: function() {
+    return(
+      var cssClass = "timer"; 
+      if (this.done()) {
+        cssClass += " red"; 
+      }
+      <div className = {cssClass}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer startingSeconds={5} />
+        <Timer startingSeconds={19} />
+        <Timer startingSeconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+Can also use ternry. 
+
+var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 0){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer startingSeconds={5} />
+        <Timer startingSeconds={19} />
+        <Timer startingSeconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+What's the difference between if statement and ternery besides number of lines and spaces? The ternery always return something. It's an expression. This is why it's very suitable in react. We can put it in states, properties. THey are liked in React because of the fact they return something. Inside these brackets, they expect something to be returned. So you can use if statements. 
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://fb.me/react-0.14.0-rc1.js"></script>
+  <style>
+    h1 { color: red }
+    .red { color: red; }
+    .timer { margin: 1em; }
+  </style>
+</head>
+
+<body>
+  <div>This part is not REACT</div>
+  <div id='react-node'></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 0){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer startingSeconds={5} />
+        <Timer startingSeconds={19} />
+        <Timer startingSeconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+
+What about timer with negative number? Do something? ignore it? Throw an error? 
+
+var Timer = React.createClass({
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentWillMount: function() {
+    if (this.props.startingSeconds < 0) {
+      throw("bad data"); 
+    } 
+  },
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 0){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer startingSeconds={-9} />
+        <Timer startingSeconds={5} />
+        <Timer startingSeconds={19} />
+        <Timer startingSeconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+What if string is passed into the timer. Your input needs to be validated, always. Everywhere, in the data base.etc. Input needs to be validated and user experience. You have to validate the input. 
+
+In react, this is done with-- by the way, the React documentation is pretty good. -- propTypes. 
+https://facebook.github.io/react/docs/reusable-components.html 
+
+
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number, 
+  }
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentWillMount: function() {
+    if (this.props.startingSeconds < 0) {
+      throw("bad data"); 
+    } 
+  },
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 0){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        <Timer startingSeconds={"coding house"} />
+        <Timer startingSeconds={5} />
+        <Timer startingSeconds={19} />
+        <Timer startingSeconds={42} />
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+
+Now gives warning saying there's invalid input. 
+
+We were doing hard coded values. How about input from user? Before we do that, I want to show you how to use loops. 
+You want a hundred timers and I want all of them start from five. 
+If you come from Angular or Ember, here's what I'd do: 
+
+var App = React.createClass({
+  render: function() {
+    return(
+      <div className = "app">
+        {for ...}        
+        <Timer startingSeconds={5} />
+        {/for}
+      </div>
+    );
+  }
+});
+
+but that's back to putting javascript in html. 
+In React, you have the power of javascript. That's the advantage of React. YOu're in javascript all the time. 
+
+var App = React.createClass({
+  render: function() {
+    for (var i = 0; i < 99; i++) {
+    }
+    return(
+      <div className = "app">
+        <Timer startingSeconds={5} />
+        {[1,2,3,4]}
+      </div>
+    );
+  }
+});
+
+remember, React is very friendly with arrays. 
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number, 
+  }
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentWillMount: function() {
+    if (this.props.startingSeconds < 0) {
+      throw("bad data"); 
+    } 
+  },
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 0){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    var timers = []; 
+    for (var i = 0; i < 99; i++) {
+      timers.push(<Timer startingSeconds={5} />)
+    }
+    return(
+      <div className = "app">
+        {timers}
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+I start with an empty array. I push the timer as much as I need. Why can I push that? It's JSX that will be translated later. 
+
+Here's a challenge. 
+
+React.render(<App timers={[5,31,49]} />, document.getElementById("react-node"));
+
+I want timers with starting times based on this array. From that, I want you to magically convert that to timers. 
+
+Samer: MVC is being challenged. Rest is being challenged. 
+Lee: The majority isn't aware that they are challenged. 
+Samer: I know, but you being aware makes you ahead. 
+
+
+Input from user: 
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number, 
+  }
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentWillMount: function() {
+    if (this.props.startingSeconds < 0) {
+      throw("bad data"); 
+    } 
+  },
+  componentDidMount: function() {
+    var self = this; 
+    var intervalId = setInterval(function(){          
+      self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+        if (self.state.remainingSeconds === 0){
+          clearInterval(intervalId);
+        }        
+      }); 
+    }, 1000);
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    // var content = [], { timers } = this.props;     
+    // for (var i = 0; i < timers.length; i++) {
+    //   timers.push(<Timer startingSeconds={timers[i]} />)
+    // }
+    var content = this.props.timers.map(function(seconds){
+      return <Timer startingSeconds={seconds} />; 
+    }); 
+    return(
+      <div className = "app">
+        {content}
+      </div>
+    );
+  }
+});
+
+React.render(<App timers={[5,31,49]} />, document.getElementById("react-node"));
+
+
+
+
+
+The basic form of input from user is mouse click. Say if I click the timer, I want it to reset to its original value. The timer is counting, if I click it, I want it to reset. That click is input from user. How would you do? 
+
+Me: In jquery, use event listener.
+Lee: change the text. 
+
+Samer: you only change the state of the component. That's the only thing you change. Constraints is a big thing. Too much flexibility is a bad thing. You caonly change the state, not change the property. 
+
+First constraint in React is you can only change the state. 
+In this case, Starting seconds. 
+
+
+render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}
+        onClick={console.log('clicked')}
+      >
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+
+Why is this rerendered every second? It's not angular. That onclick takes a variable and executes it when you define a component. It executes everytime on something. So wrap it in a function and actually return that function. 
+
+render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}
+        onClick={function() { console.log('clicked') }}
+      >
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+
+So always return a function on that onClick. 
+
+handleClick: function() {
+    console.log('clicked');
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}
+        onClick={this.handleClick}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+
+Again, this is different than Angular. In React, when you say invoke, it'll invoke on definition. Just like onClick, other events have synthetic values just like that. React is gonna take over and create synthetic event. 
+
+What if I want this click to display which timer I clicked? 
+Naomi: this.props.startingSeconds
+To reset, use this.setState. Change state back to initial state. 
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number, 
+  }
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentWillMount: function() {
+    if (this.props.startingSeconds < 0) {
+      throw("bad data"); 
+    } 
+  },
+//   startTimer: function() {
+//     var self = this; 
+//     clearInterval(self.state.intervalId); 
+//     self.setState({intervalId: setInterval(function(){          
+//       self.setState({ remainingSeconds: self.state.remainingSeconds - 1 },         
+//         if (self.state.remainingSeconds === 0){
+//           clearInterval(intervalId);
+//         }        
+//       })
+//     }, 1000);})
+//     //what tthe fuck? make it more readable!
+//   });
+// },
+  startTimer: function() {
+    var self = this; 
+    this.setState({intervalId: setInterval(this.intervalTick, 1000)});
+  }, 
+  intervalTick: function(){
+    var self = this;
+    console.log(self);
+    self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+      if (self.state.remainingSeconds === 0) {
+        clearInterval(self.state.intervalId);
+      }
+    }); 
+  },
+  componentDidMount: function() {
+    startTimer();
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  handleClick: function() {
+    console.log('clicked: ', this.props.startingSeconds);
+    this.setState({ remainingSeconds: this.props.startingSeconds }, function(){
+      this.startTimer(); 
+    }); 
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}
+        onClick={this.handleClick}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {
+    // var content = [], { timers } = this.props;     
+    // for (var i = 0; i < timers.length; i++) {
+    //   timers.push(<Timer startingSeconds={timers[i]} />)
+    // }
+    var content = this.props.timers.map(function(seconds){
+      return <Timer startingSeconds={seconds} />; 
+    }); 
+    return(
+      <div className = "app">
+        {content}
+      </div>
+    );
+  }
+});
+
+React.render(<App timers={[5,31,49]} />, document.getElementById("react-node"));
+
+Samer: try to verify the smallest thing to avoid surprises 
+
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number, 
+  }
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds };
+  }, 
+  componentWillMount: function() {
+    if (this.props.startingSeconds < 0) {
+      throw("bad data"); 
+    } 
+  },
+  startTimer: function() {
+    var self = this; 
+    this.setState({intervalId: setInterval(this.intervalTick, 1000)});
+  }, 
+  intervalTick: function(){
+    var self = this;
+    console.log(self);
+    self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function(){
+      if (self.state.remainingSeconds === 0) {
+        clearInterval(self.state.intervalId);
+      }
+    }); 
+  },
+  componentDidMount: function() {
+    startTimer();
+  },
+  done: function() {
+    return this.state.remainingSeconds === 0; 
+  },
+  handleClick: function() {
+    console.log('clicked: ', this.props.startingSeconds);
+    this.setState({ remainingSeconds: this.props.startingSeconds }, function(){
+      this.startTimer(); 
+    }); 
+  },
+  setTimer: function(){
+    this.setState({ remainingSeconds: 42 }, function() {
+      this.startTimer(); 
+    });
+  },
+  render: function() {
+    return(
+      <div className = { `timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  render: function() {  
+    var content = this.props.timers.map(function(seconds){
+      return <Timer startingSeconds={seconds} />; 
+    }); 
+    return(
+      <div className = "app">
+        {content}
+        <div onClick={this.setTimer}>1</div>
+        <div onClick={this.setTimer}>2</div>
+        <div onClick={this.setTimer}>3</div>
+        <div onClick={this.setTimer}>4</div>
+        <div onClick={this.setTimer}>5</div>
+        <div onClick={this.setTimer}>6</div>
+      </div>
+    );
+  }
+});
+
+React.render(<App timers={[5,31,49]} />, document.getElementById("react-node"));
+
+
+
+
+
+See script.js for JS stuff.!!! 
+
+Bind is a good solution for react. 
+
+Me: So bind is take a function that's gonna be evoked but not evoke it? 
+Samer: Exactly. And it makes a reference. 
+
+
+Samer: this is the game I built in my react course. 
+Do not look at the source code yet. There's a lot of React magic that makes this game easy to implement. There's a lot of state, and component going on. We've really put everything we need to make this game. Start thinking about... start implementing this random number of stars between 1 and 9. Do something simple and test it. Render those nine numbers. move on, move on, then win state. If you can get three tasks, that's good. Might not need the lives. We'll go over the code later on. I'm pretty sure I over used the state. That'll be your homework in two nights. Try to finish as much as you can. Mornings are going to be included in your work. 
+
+Something. You need to read code in a certain order. Component by component. 
+
+Let's cover more. Pluralsight. 
+We're gonna cover take extra input from the user. 
+
+with jQuery, we create an event. It's a lot closer to MVC. In react, it's simiarl, but not two way data binding. Similar in that you're maintaining an array. 
+
+To be able to change it, it has to be in a state. Make the timers array part of the app component state. 
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number,
+  },
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds, intervalId: null };
+  },
+  startTimer: function() {
+    clearInterval(this.state.intervalId);
+    this.setState({intervalId: setInterval(this.intervalTick, 1000)});
+  },
+  intervalTick: function() {
+    var self = this;
+    self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function() {
+      if (self.state.remainingSeconds === 0) {
+        clearInterval(self.state.intervalId);
+      }
+    });
+  },
+  componentDidMount: function() {
+    this.startTimer();
+  },
+  done: function() {
+   return this.state.remainingSeconds === 0;
+  },
+  setTimer: function() {
+    console.log("here");
+    this.setState({ remainingSeconds: 42 }, function() {
+      this.startTimer();
+    });
+  },
+  render: function() {
+    return (
+      <div className={`timer ${this.done() ? 'red' : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  getInitialState: function() {
+    return { timers: [66, 44] };
+  },
+  render: function() {
+    var content = this.state.timers.map(function(seconds) {
+      return <Timer startingSeconds={seconds} />;
+    });
+    return(
+      <div className="app">
+        <input type="number" />
+        <button>Add</button>
+        {content}
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+
+
+
+
+
+
+React will take care of the DOM. you just manage the state. 
+
+Don't forget, the only way you can change is set States! 
+
+
+controlled input component. 
+
+
+we have input in app component and red string inside somewhere the timer component. it seems this red is redundent. doesn't belong. 
+
+try to put your data as close to the root node as possible. 
+
+
+render: function() {
+    // var doneClass = 'red'; 
+    var content = this.state.timers.map(function(seconds) {
+      return <Timer doneClass={this.state.doneClass} startingSeconds={seconds} />;
+    });
+    return(
+      <div className="app">
+        <input type="number" ref="seconds" />
+        <button onClick={this.addTimer}>Add</button>
+        <br />
+        Done Class <input type="text" /> 
+        {content}
+      </div>
+    );
+  }
+
+How to fix this? Bind!!
+Can also use self equal this. It's easier to read. But bind is a very useful function. 
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number,
+  },
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds, intervalId: null };
+  },
+  startTimer: function() {
+    clearInterval(this.state.intervalId);
+    this.setState({intervalId: setInterval(this.intervalTick, 1000)});
+  },
+  intervalTick: function() {
+    var self = this;
+    self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function() {
+      if (self.state.remainingSeconds === 0) {
+        clearInterval(self.state.intervalId);
+      }
+    });
+  },
+  componentDidMount: function() {
+    this.startTimer();
+  },
+  done: function() {
+   return this.state.remainingSeconds === 0;
+  },
+  setTimer: function() {
+    console.log("here");
+    this.setState({ remainingSeconds: 42 }, function() {
+      this.startTimer();
+    });
+  },
+  render: function() {
+    return (
+      <div className={`timer ${this.done() ? this.props.doneClass : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  getInitialState: function() {
+    return { timers: [5, 44], doneClass: 'red' };
+  },
+  addTimer: function() {
+    console.log(this.refs);
+    console.log("The value of the new Timer is: ", this.refs.seconds.value);
+    var currentTimers = this.state.timers; 
+    currentTimers.push(this.refs.seconds.value); 
+    this.setState({ timers: currentTimers }); 
+    this.refs.seconds.value = ''; 
+  },
+  render: function() {
+    // var doneClass = 'red'; 
+    var content = this.state.timers.map(function(seconds) {
+      return <Timer doneClass={this.state.doneClass} startingSeconds={seconds} />;
+    }.bind(this));
+    return(
+      <div className="app">
+        <input type="number" ref="seconds" />
+        <button onClick={this.addTimer}>Add</button>
+        <br />
+        Done Class <input type="text" /> 
+        {content}
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+
+
+
+You are bound to the state. Control the state of the input. 
+
+onChange fires every time you type. 
+
+changeDoneClass: function(event){
+    console.log(event);
+    console.log(event.target.value);
+  },
+
+
+working code: 
+
+var Timer = React.createClass({
+  propTypes: {
+    startingSeconds: React.PropTypes.number,
+  },
+  getInitialState: function() {
+    return { remainingSeconds: this.props.startingSeconds, intervalId: null };
+  },
+  startTimer: function() {
+    clearInterval(this.state.intervalId);
+    this.setState({intervalId: setInterval(this.intervalTick, 1000)});
+  },
+  intervalTick: function() {
+    var self = this;
+    self.setState({ remainingSeconds: self.state.remainingSeconds - 1 }, function() {
+      if (self.state.remainingSeconds === 0) {
+        clearInterval(self.state.intervalId);
+      }
+    });
+  },
+  componentDidMount: function() {
+    this.startTimer();
+  },
+  done: function() {
+   return this.state.remainingSeconds === 0;
+  },
+  setTimer: function() {
+    console.log("here");
+    this.setState({ remainingSeconds: 42 }, function() {
+      this.startTimer();
+    });
+  },
+  render: function() {
+    return (
+      <div className={`timer ${this.done() ? this.props.doneClass : 'black'}`}>
+        Timer: {this.state.remainingSeconds}
+      </div>
+    );
+  }
+});
+
+var App = React.createClass({
+  getInitialState: function() {
+    return { timers: [5, 44], doneClass: 'red' };
+  },
+  addTimer: function() {
+    console.log(this.refs);
+    console.log("The value of the new Timer is: ", this.refs.seconds.value);
+    var currentTimers = this.state.timers; 
+    currentTimers.push(this.refs.seconds.value); 
+    this.setState({ timers: currentTimers }); 
+    this.refs.seconds.value = ''; 
+  },
+  changeDoneClass: function(event){
+    this.setState({ doneClass: event.target.value});    
+  },
+  render: function() {
+    // var doneClass = 'red'; 
+    var content = this.state.timers.map(function(seconds) {
+      return <Timer doneClass={this.state.doneClass} startingSeconds={seconds} />;
+    }.bind(this));
+    return(
+      <div className="app">
+        <input type="number" ref="seconds" />
+        <button onClick={this.addTimer}>Add</button>
+        <br />
+        Done Class <input type="text" value={this.state.doneClass}
+                          onChange= {this.changeDoneClass}/> 
+        {content}
+      </div>
+    );
+  }
+});
+
+React.render(<App />, document.getElementById("react-node"));
+
+
+
+React is rendering this often. 
+Every render is a virtual DOM. What React does is, it takes the new virtual Dom and compare it to the previous DOM. it gets the difference. In this case, the three css classes. It'll very efficiently change just the three css classes. 
+
+In React, onChange means onChange. Synthetic event is just an React object that wraps the native event. You should always use synthetic event? It's standard nad predictable. 
+
+React is a very small library. 
+Tonight, Just the star box and the buttons box. 
+
+YOu can copy the style I'm using. Don't waste time on the css unless you can make it better. Render random stars between numbers 1 to 9. Define a click on every number. "The number 4 is just clicked." "The number 5 is just clicked". This is the basics. I expect you to finish this part without looking at my code. 
+
+
+
+
+
+
+
