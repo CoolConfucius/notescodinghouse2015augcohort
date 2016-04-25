@@ -1,0 +1,209 @@
+o12
+2015 10 12 
+
+express generator by default is jade. 
+Cade: if you do express -h , you'll see help. Do --ejs for ejs. Otherwise, it'll be jade. 
+
+Cade: I like ejs cuz I can use emmet 
+
+looking at expressed generated stuff. 
+
+In Angular, you have one index html, thats your single page, that's all you need, it can turn into anything you want. Every can stuff, but still one index html. Big idea, if we want Angular single app, we need only one view. Basiclaly the html for angular. 
+
+something about public. it's because of this line: 
+app.use(express.static*path.join(__dirname, 'public'))); 
+this is where our statics will be. 
+
+have this in your app.js 
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URL); 
+
+environment variables. 
+put in this: 
+export MONGO_URL=mongodb://localhost/sampledeploy 
+
+type: 
+env 
+to see your environmnet variables. 
+
+env | grep MONGO 
+to search your specific one. 
+
+
+something about tokens. 
+
+
+bower. 
+I want bower stuff in public. We want to have bower installed in public. But that doesn't mean I want a bower init. That's not what I want. I want to have all configuration files, like bower json, package json in root of my project. we don't have to. what we do is make a bowerrc file. 
+touch .bowerrc
+
+it's optional. it changes the way bower works. 
+in .bowerrc 
+{
+  "directory": "/public/bower_components"
+}
+
+let's do a bower install again. Remember to use double quotes cuz it's json! 
+
+
+bower i --save angular-ui-router
+
+
+
+Nick: 
+Jira
+project, create, user story. 
+Sally wants to be able to register, Bill wants to be able to login with facebook... Mark wants to post an item for sale. 
+Make sure that, under the summary... 
+The reporter will be Cade 
+
+
+Description: write what the game is. 
+Don't need babls, blocks right now. 
+
+Under story is a task. 
+Summary: html layout 
+
+learn how to use jira in the command line 
+
+
+Cade: 
+Public is all front end Angular. 
+
+Me: after git clone, npm install, bower install, mongod, then nodemon  and then it works. 
+
+Cade: with and without the # are two different things. With hash, it's the app. Without it, it's just an api. Everything starting with a # is Angular, handling states. The actual endpoint, express, is just slash. This way, we can have different routes in angular and still use the server for different api endpoints. It's an all inclusive all in one solution. Don't even need a separate python server to handle it cuz express can do it! We're not accepting requests from anywhere else. It's comming locally. 
+
+to get ready to deploy, we need to package this up in a way so that Heroku will know how to run it. Heroku is gonna look at the package json. one of the things heroku will do already is npm install the dependencies, but it won't do the bower install which we need. we need to get it working. heroku has to get all the dependencies. so we need to add bower to our package json. 
+
+Take notes.
+in root: 
+npm i --save bower 
+
+add engines to your packagejson. 
+
+
+git commit -am 'edited package.json for heroku'
+heroku create 
+
+
+we want to set up mongo db in the cloud. mongo lab, an add on for heroku. it's just a mongo db in the cloud. 
+
+heroku addons:create mongolab
+
+heroku open 
+
+
+make sure bower is in your package.json 
+remember: npm install --save bower  
+
+
+
+
+2015 10 13 
+Cade: Passport, json web token, base 64 encoded. two way hash. 
+
+
+TommyJ: communication. have to be good at documenting your code. it's okay, even good, to repeat yourself. over communicate. Estimates. it's hard to estimate, but people will ask you. How long is this gonna take? I have no idea. Whatever you come up with in your head, double it and add extra hours. Underpromise and over deliver. This will save time in the long run. 
+
+side projects are good. you can make side projects that save time on work. it can help you get paid more. 
+
+No Assumptions. No dumb questions. I'd rather have someone ask a blatant question to make sure everyone's on the same page and screw up. 
+
+I reccomend being in a dynamic environment that lets you do a variety of things. 
+
+next presentation: 
+it's a numbers game. 
+4 types. 
+startups. ...
+
+Recruiter Call
+years of experience? 
+SalaryExpectations? go ahead and say 90/ 95k . be in the middle. not to high or low. 
+where are you in your job search? I'm looking several places. let them know that you're a hot commodity and that if they want you, they need to step up.
+what are you doing now? you can say you're a teaching assistent, or freelancer working on projects. if they ask for your projects, you can say you can't disclose them. 
+Your Background. Say things that are related to the job. 
+
+2. Company Call. Have a "One Liner" ready. Know what the company is about. Copy and paste the website that says what thye're about. 
+General Code Questions. Typically like... make sure you hvae general knowledge. 
+Relevant Questions. "What questions do you have for us?" ALways have two or three. Ask them "what are you looking for? What's the criteria for an idea candidate?" show that you're invested in their time. 
+
+3. Onsite Interview. 75% tech and 25% other. Study! They may have you program in front of them. it takes time to be comfortable in the situation. Know that that's gonna happen. 
+
+If they ask you a question and you don't know, that's fine. Say "I don't know, but I can get back to you in a day."
+Sometimes they'll ask you question that you don't know, but want to see your reaction, want to see your thoguth process, see how you'll approach. 
+
+
+Recruiters who want to meet with me are a waste of time. They get paid for getting people into jobs, they don't care if the job is a fit. I skip the recruiter stage. I go directly to the source. Be cognizant of who you're talking to. They just want to know you can program, you can communicate, what your salary expectations are. 
+
+
+
+Cade: 
+need config/passport.js
+
+
+routes/users.js
+passport.authenticate('local', function(err, user, info){
+    if(err){ 
+      // return next(err); 
+      return res.status(400).json({error: err}); 
+    }
+
+    if(user){
+      return res.json({token: user.generateJWT()});
+    } else {
+      return res.status(401).json(info);
+    }
+  })(req, res, next);
+
+
+
+
+
+
+config/passport.js
+  passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      // if (!user) {
+      //   return done(null, false, { message: 'Incorrect username.' });
+      // }
+      // if (!user.validPassword(password)) {
+      //   return done(null, false, { message: 'Incorrect password.' });
+      // }
+      if (!user || !user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect username or password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+
+on board: 
+user register/login -> JWT
+JWT -> localStorage / sessionStorage
+set header Authorization: 'Bearer ' + JWT
+
+
+session storage is like local storage except it only lasts for a session. more secure sites use session storage. you're not gonna stay logged in for a month on a bank. 
+
+session storage is more secure. 
+
+Me: I should use local storage then. 
+
+Cade: we'll use more jwt than cookies. 
+
+atob means ascii to binary. 
+var payload = JSON.parse($window.atob(token.split('.')[1]));
+we get the token, and we split on periods. The payload is just the purple (middle) part. 
+
+Cade to me: JWT_Secret isn't JWT_SECRET. look at where the error is. passport, it's not defeined because it's not required. 
+
+nav is on every page, not dependent on state. 
+
+abstract means you can't go there directly. 
+
+
+Me: when in doubt, mongod then nodemon. 
